@@ -1,29 +1,82 @@
 {
-  "name": "rapidly-ui-kit",
-  "private": true,
+  "name": "@rapidly/ui-kit",
   "version": "0.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "type": "module",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "/dist",
+    "/dist/style.css"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "dev": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build": "vite build && tsc",
+    "lint:eslint": "eslint \"src/**/*.ts*\"",
+    "lint:eslint:fix": "pnpm run lint:eslint --fix",
+    "lint:stylelint": "node ../stylelint-config/node_modules/stylelint/bin/stylelint.mjs \"src/**/*.scss\"",
+    "lint:stylelint:fix": "pnpm run lint:stylelint --fix",
+    "lint:types": "tsc",
+    "lint": "pnpm run lint:eslint && pnpm run lint:stylelint && pnpm run lint:types",
+    "lint:fix": "pnpm run lint:eslint:fix && pnpm run lint:types",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "start": "vite"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9.21.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^15.15.0",
-    "typescript": "~5.7.2",
-    "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.0"
-  }
+    "@babel/core": "7.22.20",
+    "@fontsource/roboto": "5.0.8",
+    "@it-incubator/eslint-config": "^1.0.3",
+    "@it-incubator/prettier-config": "^0.1.2",
+    "@it-incubator/stylelint-config": "^2.0.0",
+    "@mdx-js/react": "2.3.0",
+    "@storybook/addon-actions": "7.4.4",
+    "@storybook/addon-docs": "7.4.4",
+    "@storybook/addon-essentials": "7.4.4",
+    "@storybook/addon-interactions": "7.4.4",
+    "@storybook/addon-links": "7.4.4",
+    "@storybook/addons": "^7.4.4",
+    "@storybook/blocks": "7.4.4",
+    "@storybook/react": "7.4.4",
+    "@storybook/react-vite": "7.4.4",
+    "@storybook/testing-library": "0.2.1",
+    "@storybook/theming": "7.4.4",
+    "@types/node": "20.6.4",
+    "@types/react": "18.2.45",
+    "@types/react-datepicker": "4.15.0",
+    "@types/react-dom": "18.2.7",
+    "@vitejs/plugin-react": "4.0.4",
+    "babel-loader": "9.1.3",
+    "concurrently": "8.2.1",
+    "date-fns": "2.30.0",
+    "esbuild-sass-plugin": "2.15.0",
+    "framer-motion": "^10.16.4",
+    "loki": "^0.32.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-toastify": "9.1.3",
+    "remark-gfm": "3.0.1",
+    "sass": "1.68.0",
+    "storybook": "7.4.4",
+    "typescript": "5.2.2",
+    "vite": "4.4.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "1.0.4",
+    "@radix-ui/react-slot": "^1.1.2",
+    "clsx": "2.0.0",
+    "react-datepicker": "4.19.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.2",
+    "react-dom": ">=18.0.2"
+  },
+  "eslintignore": [
+    "/src/assets/icons/components/*.tsx"
+  ]
 }
